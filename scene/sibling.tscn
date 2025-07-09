@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bipwd70yub8vl"]
+
+[ext_resource type="Script" uid="uid://cu2j7qnmate00" path="res://script/sibling.gd" id="1_wt52d"]
+[ext_resource type="Texture2D" uid="uid://bbi30k2hxdytm" path="res://asset/char_red.png" id="1_xkbkj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wt52d"]
+size = Vector2(20, 18.4146)
+
+[sub_resource type="Gradient" id="Gradient_wt52d"]
+colors = PackedColorArray(1, 1, 1, 0.207843, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qoy8u"]
+gradient = SubResource("Gradient_wt52d")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Sibling" type="CharacterBody2D" groups=["sibling", "silbling"]]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_wt52d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -28)
+texture = ExtResource("1_xkbkj")
+region_enabled = true
+region_rect = Rect2(448, 0, 56, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -15.1)
+scale = Vector2(0.48, 1.64)
+shape = SubResource("RectangleShape2D_wt52d")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -16)
+texture = SubResource("GradientTexture2D_qoy8u")

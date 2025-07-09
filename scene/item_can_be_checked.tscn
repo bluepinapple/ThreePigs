@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddbxcqvgnmnxj"]
+
+[ext_resource type="Script" uid="uid://dbsm0dvuk7tkk" path="res://script/item_can_be_checked.gd" id="1_kr5kj"]
+[ext_resource type="Texture2D" uid="uid://d03bl18hvpopw" path="res://asset/gemBlue.png" id="2_s2ckc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kr5kj"]
+
+[node name="ItemCanBeChecked" type="Node2D"]
+position = Vector2(483, 277)
+script = ExtResource("1_kr5kj")
+
+[node name="position" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite" type="Sprite2D" parent="position"]
+unique_name_in_owner = true
+texture = ExtResource("2_s2ckc")
+
+[node name="Area2D" type="Area2D" parent="position"]
+collision_layer = 2
+
+[node name="Polygon" type="CollisionPolygon2D" parent="position/Area2D"]
+unique_name_in_owner = true
+
+[node name="Check" type="Node2D" parent="position"]
+
+[node name="Area2D" type="Area2D" parent="position/Check"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="position/Check/Area2D"]
+scale = Vector2(7.92581, 7.92581)
+shape = SubResource("CircleShape2D_kr5kj")
+
+[connection signal="mouse_entered" from="position/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="position/Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="body_entered" from="position/Check/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="position/Check/Area2D" to="." method="_on_area_2d_body_exited"]

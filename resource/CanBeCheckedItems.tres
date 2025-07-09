@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CanBeCheckedItemGroup" load_steps=5 format=3 uid="uid://dpqnxmbcgd57e"]
+
+[ext_resource type="Script" uid="uid://10aaeiv6o50u" path="res://script/can_be_checked_item.gd" id="1_bwu6q"]
+[ext_resource type="Script" uid="uid://r88cxx0cco2q" path="res://script/can_be_checked_item_group.gd" id="2_k1gtx"]
+[ext_resource type="Texture2D" uid="uid://d03bl18hvpopw" path="res://asset/gemBlue.png" id="2_mhfre"]
+
+[sub_resource type="Resource" id="Resource_er3ho"]
+script = ExtResource("1_bwu6q")
+item_id = 1
+item_pic = ExtResource("2_mhfre")
+metadata/_custom_type_script = "uid://10aaeiv6o50u"
+
+[resource]
+script = ExtResource("2_k1gtx")
+items = Array[ExtResource("1_bwu6q")]([SubResource("Resource_er3ho")])
+metadata/_custom_type_script = "uid://r88cxx0cco2q"
