@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bylln8rki55il"]
+
+[ext_resource type="Texture2D" uid="uid://ctqcxrm065rit" path="res://asset/tilemap_packed.png" id="1_3t5lc"]
+[ext_resource type="Script" uid="uid://cjufki5psml6d" path="res://script/face.gd" id="2_1ds0r"]
+
+[node name="face" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_3t5lc")
+region_enabled = true
+region_rect = Rect2(108, 108, 18, 18)
+script = ExtResource("2_1ds0r")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -8.0
+offset_top = -18.0
+offset_right = 32.0
+offset_bottom = 5.0
+scale = Vector2(0.360557, 0.360557)
+theme_override_font_sizes/font_size = 0
+text = "111"
+horizontal_alignment = 1

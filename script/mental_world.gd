@@ -16,7 +16,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func on_monster_generater_pressed():
-	print("111")
+	#print("111")d
 	var new_monster = monster.instantiate()
 	
 	entity.add_child(new_monster)

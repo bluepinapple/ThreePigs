@@ -1,7 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bipwd70yub8vl"]
+[gd_scene load_steps=12 format=3 uid="uid://bipwd70yub8vl"]
 
 [ext_resource type="Script" uid="uid://cu2j7qnmate00" path="res://script/sibling.gd" id="1_wt52d"]
 [ext_resource type="Texture2D" uid="uid://bbi30k2hxdytm" path="res://asset/char_red.png" id="1_xkbkj"]
+[ext_resource type="Script" uid="uid://blrfgdos1aj4a" path="res://script/sibling_state_machine.gd" id="2_hnx3f"]
+[ext_resource type="PackedScene" uid="uid://bjdbb8f382ytd" path="res://manager/pathfinder.tscn" id="3_qoy8u"]
+[ext_resource type="Script" uid="uid://btbnc2md8kgvg" path="res://script/sibling_idle_state.gd" id="3_w8l0g"]
+[ext_resource type="Script" uid="uid://cbiodysk6fnk7" path="res://script/sibling_first_state.gd" id="4_w8l0g"]
+[ext_resource type="Script" uid="uid://dayxjexjnx3c8" path="res://script/sibling_follow_state.gd" id="5_bhc5b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt52d"]
 size = Vector2(20, 18.4146)
@@ -15,12 +20,42 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hnx3f"]
+
 [node name="Sibling" type="CharacterBody2D" groups=["sibling", "silbling"]]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_wt52d")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Node" type="Node" parent="."]
+
+[node name="Pathfinder" parent="Node" instance=ExtResource("3_qoy8u")]
+unique_name_in_owner = true
+visible = false
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("2_hnx3f")
+initial_state = NodePath("WaitState")
+metadata/_custom_type_script = "uid://bfwgqpc0x8ywi"
+
+[node name="idleState" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("3_w8l0g")
+metadata/_custom_type_script = "uid://dkxbpb3m4p3uc"
+
+[node name="WaitState" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("4_w8l0g")
+metadata/_custom_type_script = "uid://dkxbpb3m4p3uc"
+
+[node name="FollowState" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("5_bhc5b")
+metadata/_custom_type_script = "uid://dkxbpb3m4p3uc"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(0, -28)
 texture = ExtResource("1_xkbkj")
@@ -35,3 +70,13 @@ shape = SubResource("RectangleShape2D_wt52d")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -16)
 texture = SubResource("GradientTexture2D_qoy8u")
+
+[node name="PlayerCheckArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -15)
+collision_layer = 0
+
+[node name="PlayerCheckAreaColli" type="CollisionShape2D" parent="PlayerCheckArea"]
+unique_name_in_owner = true
+scale = Vector2(2.37167, 2.37167)
+shape = SubResource("CircleShape2D_hnx3f")

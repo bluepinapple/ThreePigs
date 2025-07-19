@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://rhpo4sk2kvp2"]
+[gd_scene load_steps=25 format=3 uid="uid://rhpo4sk2kvp2"]
 
 [ext_resource type="Script" uid="uid://b6hbdqwed0cfe" path="res://script/player/player.gd" id="1_xo3ru"]
 [ext_resource type="Texture2D" uid="uid://d0lh3vr2u7d5h" path="res://asset/char_green2.png" id="2_hjaqi"]
 [ext_resource type="Shader" uid="uid://w20tnvdxps8s" path="res://shader/dash_cooldown.gdshader" id="3_s4jxa"]
 [ext_resource type="Texture2D" uid="uid://cyfce5sdijvqm" path="res://asset/progress_full.png" id="4_oh5ij"]
 [ext_resource type="Texture2D" uid="uid://deob4asp8aqxw" path="res://asset/progress_empty.png" id="5_hp4bs"]
+[ext_resource type="PackedScene" uid="uid://bylln8rki55il" path="res://scene/face.tscn" id="6_oh5ij"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2vtq"]
 shader = ExtResource("3_s4jxa")
@@ -599,6 +600,8 @@ position = Vector2(0, -14)
 
 [node name="Marker2D" type="Marker2D" parent="SbilingController"]
 position = Vector2(-28, 0)
+
+[node name="face" parent="SbilingController/Marker2D" instance=ExtResource("6_oh5ij")]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -14)

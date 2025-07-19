@@ -34,8 +34,8 @@ func _physics_process(_delta: float) -> void:
 		else :
 			coyote_time.stop()
 	#print(siblings)
-	for kid in siblings:
-		kid.global_position = kid.global_position.lerp(marker_2d.global_position,1-exp(-_delta*8))
+	#for kid in siblings:
+		#kid.global_position = kid.global_position.lerp(marker_2d.global_position,1-exp(-_delta*8))
 	
 
 
@@ -56,6 +56,12 @@ func _process(_delta: float) -> void:
 			
 			can_dash = true
 	
+
+
+func get_sibling_sink_position():
+	
+	return marker_2d.global_position
+
 
 
 func set_sprite(pic:Texture):
@@ -87,11 +93,14 @@ func dash_cooling_down():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	#print(!siblings.has(body),body.is_in_group("sibling"))
-	if !siblings.has(body) and body.is_in_group("sibling"):
-		siblings.append(body)
-		if body.return_ability().to_lower() == "dash":
-			is_dash_ability_enable = true
-
+	if body is CharacterBody2D:
+		if !siblings.has(body) and body.is_in_group("sibling"):
+			siblings.append(body)
+			if body.return_ability().to_lower() == "dash":
+				is_dash_ability_enable = true
+	
+	if body is TileMapLayer:
+		print("tile")
 
 func player_death():
 	queue_free()

@@ -2,7 +2,7 @@ extends Node
 class_name State
 
 func enter():
-	print("currentstate ",self.name)
+	#print("currentstate ",self.name)
 	pass
 
 
